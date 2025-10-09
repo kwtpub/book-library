@@ -17,7 +17,6 @@ class App {
       this.currentView.destroy();
     }
     const view = this.routes.find(r => r.path == location.hash).view;
-    console.log(view)
     this.currentView = new view(this.appState);
     this.currentView.render();
   }
