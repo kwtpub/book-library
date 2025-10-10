@@ -2,25 +2,23 @@ import { DivComponent } from "../../common/div-component";
 
 export class CardList extends DivComponent {
   
-  constructor(state) {
+  constructor(appState, parentState) {
     super();
-    this.state = state;
+    this.appState = appState;
+    this.parentState = parentState;
   }
 
-  isLoading() {
-    if(this.state.loading) {
-      return   `<div class="loading">Loading...</div>`
-    } else {
-      return `<div>
-      Найдено книг - ${this.state.list.length}
-    </div>`
-    }
-  }
+
   
   render() {
-    this.el.innerHTML = "";
-    this.el.classList.add("list");
-    this.el.innerHTML = this.isLoading();
+    if (this.parentState.loading) {
+      this.el.innerHTML = `<div class="card_list__loader">Загрузка...</div>`;
+      return this.el;
+    }
+    this.el.classList.add("card_list");
+    this.el.innerHTML = `
+    <h1>Найдено книг - ${this.parentState.list.length}</h1>
+`
     return this.el;  
   }
 }

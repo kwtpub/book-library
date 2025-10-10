@@ -37,11 +37,15 @@ export class MainView extends AbstractView {
       this.state.loading = false;
       this.state.list = data.docs;
     }
+    if (path === 'list' || path === 'loading') {
+      this.render();
+    }
   }
 
   render() {
     const main = document.createElement('div')
     main.append(new Search(this.state).render());
+    main.append(new CardList(this.appState, this.state).render());
     this.app.innerHTML = '';
     this.app.append(main)
     this.renderHeader();
