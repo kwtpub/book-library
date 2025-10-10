@@ -1365,7 +1365,7 @@
           <img src="/static/favorites.svg" alt="Избранное иконка">
           Избранное
           <div class="menu__counter">
-            ${this.appState.favorites.length}
+            <!-- ${this.appState.favorites} -->
           </div>
         </a>
       </div>
@@ -1379,6 +1379,11 @@
       super();
       this.state = state;
 
+    }
+
+    search() {
+      const value = this.el.querySelector('input').value;
+      this.state.searchQuery = value;
     }
 
     render() {
@@ -1398,6 +1403,12 @@
           <img src="static/search-white.svg" alt="Иконка поиска"/>
         </button>
     `;
+      this.el.querySelector('button').addEventListener('click', this.search.bind(this));
+      this.el.querySelector('input').addEventListener('keydown', (event) => {
+        if (event.code === 'Enter') {
+          this.search();
+        }
+      });
         return this.el;
     }
   }
@@ -1414,6 +1425,7 @@
       super();
       this.appState = appState;
       this.appState = onChange(this.appState, this.AppStateHook.bind(this));
+      this.state = onChange(this.state, this.stateHook.bind(this));
       this.setTitle('Поиск книг');
     }
 
@@ -1423,20 +1435,34 @@
         console.log(path);
       }
     }
+  	async loadList(q, offset) {
+  		const res = await fetch(`https://openlibrary.org/search.json?q=${q}&offset=${offset}`);
+  		return res.json();
+  	}
+    async stateHook(path) {
+      console.log(path);
+      if(path === 'searchQuery') {
+        this.state.loading = true;
+        const data = await this.loadList(this.state.searchQuery, this.state.offset);
+        this.state.loading = false;
+        this.state.list = data.docs;
+      }
+    }
 
     render() {
       const main = document.createElement('div');
       main.append(new Search(this.state).render());
-
       this.app.innerHTML = '';
       this.app.append(main);
       this.renderHeader();
+
     }
 
     renderHeader() {
       const header = new Header(this.appState).render();
       this.app.prepend(header);
     }
+
   }
 
   class App {

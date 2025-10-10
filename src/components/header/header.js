@@ -22,7 +22,7 @@ export class Header extends DivComponent {
           <img src="/static/favorites.svg" alt="Избранное иконка">
           Избранное
           <div class="menu__counter">
-            ${this.appState.favorites.length}
+            <!-- ${this.appState.favorites} -->
           </div>
         </a>
       </div>
