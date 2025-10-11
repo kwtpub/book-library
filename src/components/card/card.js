@@ -11,6 +11,7 @@ export class Card extends DivComponent {
 
   #addToFavorites() {
     this.appState.favorites.push(this.cardState);
+    console.log(this.appState.favorites)
   }
 
   #deleteFromFavorites() {
