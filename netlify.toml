@@ -25,6 +25,28 @@
   [headers.values]
     Content-Type = "text/css"
 
+# Serve static files directly
+[[redirects]]
+  from = "/app*.js"
+  to = "/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/bundle.css"
+  to = "/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/static/*"
+  to = "/:splat"
+  status = 200
+
+# SPA fallback - must be last
 [[redirects]]
   from = "/*"
   to = "/index.html"

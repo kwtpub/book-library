@@ -1,1 +1,5 @@
+/app*.js    /app.js   200
+/bundle.css    /bundle.css   200
+/assets/*    /assets/:splat   200
+/static/*    /static/:splat   200
 /*    /index.html   200
