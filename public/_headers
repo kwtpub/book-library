@@ -1,0 +1,11 @@
+/dist/*.js
+  Content-Type: application/javascript
+
+/dist/*.css
+  Content-Type: text/css
+
+/static/*.svg
+  Content-Type: image/svg+xml
+
+/static/*.ico
+  Content-Type: image/x-icon
