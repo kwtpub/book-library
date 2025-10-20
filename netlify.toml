@@ -6,12 +6,12 @@
   NODE_VERSION = "18"
 
 [[headers]]
-  for = "/dist/*.js"
+  for = "/*.js"
   [headers.values]
     Content-Type = "application/javascript"
 
 [[headers]]
-  for = "/dist/*.css"
+  for = "/*.css"
   [headers.values]
     Content-Type = "text/css"
 
@@ -19,6 +19,11 @@
   for = "/static/*.svg"
   [headers.values]
     Content-Type = "image/svg+xml"
+
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Content-Type = "text/css"
 
 [[redirects]]
   from = "/*"

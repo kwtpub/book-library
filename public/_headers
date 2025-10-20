@@ -1,7 +1,10 @@
-/dist/*.js
+/*.js
   Content-Type: application/javascript
 
-/dist/*.css
+/*.css
+  Content-Type: text/css
+
+/assets/*.css
   Content-Type: text/css
 
 /static/*.svg
