@@ -8,13 +8,15 @@
   "type": "module",
   "scripts": {
     "start": "live-server",
-    "build": "rollup -c --watch"
+    "build": "rollup -c --watch",
+    "build:prod": "rollup -c"
   },
   "keywords": [
     "books"
   ],
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@rollup/plugin-copy": "^0.19.0",
     "@rollup/plugin-html": "^2.0.0",
     "@rollup/plugin-node-resolve": "^16.0.2",
     "eslint": "^9.36.0",
